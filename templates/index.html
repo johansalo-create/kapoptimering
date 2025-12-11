@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kapoptimering | Hyllteknik</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --red: #c41e3a;
+            --gray-100: #f7f7f7;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --gray-700: #404040;
+            --green: #16a34a;
+            --blue: #2563eb;
+            --orange: #ea580c;
+            --purple: #7c3aed;
+            --teal: #0d9488;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-100);
+            color: var(--black);
+            line-height: 1.5;
+            font-size: 15px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        header img {
+            height: 32px;
+            width: auto;
+        }
+
+        header .tagline {
+            font-size: 13px;
+            color: var(--gray-500);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            padding: 32px;
+            margin-bottom: 24px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .card-header {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gray-500);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        /* Form Elements */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--gray-600);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input {
+            padding: 12px 14px;
+            border: 1px solid var(--gray-300);
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            background: var(--white);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+
+        .form-group input::placeholder {
+            color: var(--gray-400);
+        }
+
+        /* Items List */
+        .items-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 50px;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        .items-header span {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .item-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 50px;
+            gap: 16px;
+            margin-bottom: 8px;
+            align-items: center;
+        }
+
+        .item-row input {
+            padding: 12px 14px;
+            border: 1px solid var(--gray-300);
+            font-size: 15px;
+            font-family: inherit;
+        }
+
+        .item-row input:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: inherit;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--gray-700);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--black);
+            border: 1px solid var(--gray-300);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--black);
+        }
+
+        .btn-remove {
+            background: none;
+            border: 1px solid var(--gray-300);
+            color: var(--gray-500);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .btn-remove:hover {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        .btn-add {
+            background: none;
+            border: 1px dashed var(--gray-300);
+            color: var(--gray-500);
+            padding: 12px;
+            width: 100%;
+            margin-top: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .btn-add:hover {
+            border-color: var(--black);
+            color: var(--black);
+        }
+
+        .btn-run {
+            width: 100%;
+            padding: 18px;
+            font-size: 15px;
+            background: var(--red);
+            color: var(--white);
+            border: none;
+        }
+
+        .btn-run:hover {
+            background: #a31830;
+        }
+
+        /* Results */
+        #results {
+            display: none;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--gray-200);
+            border: 1px solid var(--gray-200);
+        }
+
+        .summary-item {
+            background: var(--white);
+            padding: 24px;
+            text-align: center;
+        }
+
+        .summary-item .value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--black);
+            line-height: 1;
+        }
+
+        .summary-item .label {
+            font-size: 11px;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+        }
+
+        /* Pattern Cards */
+        .pattern-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 16px;
+        }
+
+        .pattern-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .pattern-header h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .pattern-count {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-600);
+        }
+
+        .pattern-count span {
+            background: var(--black);
+            color: var(--white);
+            padding: 4px 12px;
+            margin-left: 8px;
+        }
+
+        /* Tube Visualization */
+        .tube-visual {
+            position: relative;
+            height: 56px;
+            background: var(--gray-200);
+            margin: 20px;
+            border: 1px solid var(--gray-300);
+        }
+
+        .tube-piece {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 11px;
+            border-right: 1px solid rgba(255,255,255,0.3);
+            min-width: 2px;
+            overflow: hidden;
+        }
+
+        .tube-piece-label {
+            white-space: nowrap;
+            padding: 0 4px;
+        }
+
+        .tube-waste {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            background: repeating-linear-gradient(
+                -45deg,
+                #e0e0e0,
+                #e0e0e0 3px,
+                #d0d0d0 3px,
+                #d0d0d0 6px
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-600);
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .tube-waste span {
+            background: rgba(255,255,255,0.8);
+            padding: 2px 6px;
+        }
+
+        .tube-fixture {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            background: var(--gray-600);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            min-width: 30px;
+            border-left: 2px solid var(--gray-700);
+        }
+
+        /* Grouped pieces legend */
+        .tube-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 12px 20px;
+            background: var(--gray-100);
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Colors for pieces */
+        .color-0 { background: var(--black); }
+        .color-1 { background: var(--red); }
+        .color-2 { background: var(--blue); }
+        .color-3 { background: var(--orange); }
+        .color-4 { background: var(--teal); }
+        .color-5 { background: var(--purple); }
+
+        .pattern-info {
+            display: flex;
+            gap: 32px;
+            padding: 16px 20px;
+            font-size: 13px;
+            color: var(--gray-600);
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .pattern-info strong {
+            color: var(--black);
+        }
+
+        /* Verification */
+        .verification-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .verification-item:last-child {
+            border-bottom: none;
+        }
+
+        .verification-item.ok {
+            border-left: 3px solid var(--green);
+        }
+
+        .verification-item.error {
+            border-left: 3px solid var(--red);
+        }
+
+        .check-icon {
+            font-weight: 600;
+        }
+
+        .check-icon.ok { color: var(--green); }
+        .check-icon.error { color: var(--red); }
+
+        /* Suggestions */
+        .suggestions-intro {
+            padding: 16px;
+            background: #fff8e6;
+            border-left: 3px solid #f0ad4e;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .suggestion-item {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 16px;
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .suggestion-main {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .suggestion-title {
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .suggestion-detail {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+
+        .suggestion-improvement {
+            text-align: right;
+        }
+
+        .suggestion-improvement .value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .suggestion-improvement .label {
+            font-size: 11px;
+            color: var(--gray-500);
+        }
+
+        .btn-apply {
+            padding: 8px 16px;
+            background: var(--green);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .btn-apply:hover {
+            background: #138a3f;
+        }
+
+        /* Actions */
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .no-print { display: none !important; }
+            .card { border: 1px solid #ddd; break-inside: avoid; }
+            .pattern-card { break-inside: avoid; }
+            .tube-piece, .tube-waste, .tube-fixture {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        .print-header {
+            display: none;
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--black);
+        }
+
+        @media print {
+            .print-header {
+                display: block;
+            }
+            .print-header img {
+                height: 28px;
+            }
+            .print-header h2 {
+                font-size: 18px;
+                font-weight: 600;
+                margin-top: 12px;
+                letter-spacing: 2px;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            header {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="/static/logo.png" alt="Hyllteknik">
+            <span class="tagline">Kapoptimering</span>
+        </header>
+
+        <!-- Input Form -->
+        <div id="input-section" class="no-print">
+            <div class="card">
+                <div class="card-header">Jobbinformation</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Jobbnamn / Kund</label>
+                        <input type="text" id="job_name" placeholder="Ange jobbnamn">
+                    </div>
+                    <div class="form-group">
+                        <label>Materialtyp</label>
+                        <input type="text" id="material" placeholder="T.ex. Plattovalt 60x40x2mm">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Parametrar</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Ursprungslängd (mm)</label>
+                        <input type="number" id="stock_length" value="6000">
+                    </div>
+                    <div class="form-group">
+                        <label>Fixturrest (mm)</label>
+                        <input type="number" id="fixture_rest" value="50">
+                    </div>
+                    <div class="form-group">
+                        <label>Kapklinga (mm)</label>
+                        <input type="number" id="saw_kerf" value="2.5" step="0.1">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Kaplängder</div>
+                <div class="items-header">
+                    <span>Längd (mm)</span>
+                    <span>Antal (st)</span>
+                    <span></span>
+                </div>
+                <div id="items-list">
+                    <div class="item-row">
+                        <input type="number" class="item-length" placeholder="1240">
+                        <input type="number" class="item-qty" placeholder="55">
+                        <button class="btn-remove" onclick="removeItem(this)">&times;</button>
+                    </div>
+                </div>
+                <button class="btn-add" onclick="addItem()">+ Lägg till rad</button>
+            </div>
+
+            <button class="btn btn-run" id="run-btn" onclick="runOptimization()">
+                Beräkna optimalt kapmönster
+            </button>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results">
+            <div class="print-header">
+                <img src="/static/logo.png" alt="Hyllteknik">
+                <h2>KAPINSTRUKTION</h2>
+                <p id="print-job-info"></p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Sammanfattning</div>
+                <div class="summary-grid" id="summary-grid"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Kapmönster</div>
+                <div id="patterns-container"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Kontroll</div>
+                <div id="verification-list"></div>
+            </div>
+
+            <div class="card" id="suggestions-card" style="display: none;">
+                <div class="card-header">Optimeringsförslag</div>
+                <div class="suggestions-intro" id="suggestions-intro"></div>
+                <div id="suggestions-list"></div>
+            </div>
+
+            <div class="actions no-print">
+                <button class="btn btn-primary" onclick="window.print()">Skriv ut</button>
+                <button class="btn btn-secondary" onclick="newOrder()">Ny beställning</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const colorMap = {};
+        let colorIndex = 0;
+
+        function getColor(length) {
+            if (!(length in colorMap)) {
+                colorMap[length] = colorIndex % 6;
+                colorIndex++;
+            }
+            return `color-${colorMap[length]}`;
+        }
+
+        function addItem() {
+            const list = document.getElementById('items-list');
+            const row = document.createElement('div');
+            row.className = 'item-row';
+            row.innerHTML = `
+                <input type="number" class="item-length" placeholder="Längd">
+                <input type="number" class="item-qty" placeholder="Antal">
+                <button class="btn-remove" onclick="removeItem(this)">&times;</button>
+            `;
+            list.appendChild(row);
+        }
+
+        function removeItem(btn) {
+            const rows = document.querySelectorAll('.item-row');
+            if (rows.length > 1) {
+                btn.parentElement.remove();
+            }
+        }
+
+        function getFormData() {
+            const items = [];
+            document.querySelectorAll('.item-row').forEach(row => {
+                const length = row.querySelector('.item-length').value;
+                const qty = row.querySelector('.item-qty').value;
+                if (length && qty) {
+                    items.push({ length: parseInt(length), quantity: parseInt(qty) });
+                }
+            });
+
+            return {
+                job_name: document.getElementById('job_name').value,
+                material: document.getElementById('material').value,
+                stock_length: parseFloat(document.getElementById('stock_length').value),
+                fixture_rest: parseFloat(document.getElementById('fixture_rest').value),
+                saw_kerf: parseFloat(document.getElementById('saw_kerf').value),
+                items: items
+            };
+        }
+
+        async function runOptimization() {
+            const data = getFormData();
+
+            if (data.items.length === 0) {
+                alert('Lägg till minst en kaplängd');
+                return;
+            }
+
+            // Show loading state
+            const btn = document.getElementById('run-btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Beräknar...';
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+
+            Object.keys(colorMap).forEach(k => delete colorMap[k]);
+            colorIndex = 0;
+
+            try {
+                const response = await fetch('/optimize', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (result.error) {
+                    alert(result.error);
+                    return;
+                }
+
+                displayResults(result);
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Fel vid optimering: ' + error.message);
+            } finally {
+                // Reset button
+                btn.textContent = originalText;
+                btn.disabled = false;
+                btn.style.opacity = '1';
+            }
+        }
+
+        function displayResults(result) {
+            document.getElementById('input-section').style.display = 'none';
+            document.getElementById('results').style.display = 'block';
+
+            document.getElementById('print-job-info').innerHTML = `
+                ${result.job_name || 'Ej angivet'} &mdash; ${result.material || 'Ej angivet'}<br>
+                <small>${result.timestamp}</small>
+            `;
+
+            const summaryHtml = `
+                <div class="summary-item">
+                    <div class="value">${result.summary.total_tubes}</div>
+                    <div class="label">Antal rör</div>
+                </div>
+                <div class="summary-item">
+                    <div class="value">${result.summary.total_waste_m}m</div>
+                    <div class="label">Totalt spill</div>
+                </div>
+                <div class="summary-item">
+                    <div class="value">${result.summary.total_material_m}m</div>
+                    <div class="label">Materialåtgång</div>
+                </div>
+                <div class="summary-item">
+                    <div class="value">${result.summary.utilization}%</div>
+                    <div class="label">Utnyttjande</div>
+                </div>
+            `;
+            document.getElementById('summary-grid').innerHTML = summaryHtml;
+
+            const usableLength = result.parameters.usable_length;
+            const stockLength = result.parameters.stock_length;
+            const fixtureRest = result.parameters.fixture_rest;
+
+            let patternsHtml = '';
+            result.patterns.forEach((pattern, idx) => {
+                let tubeHtml = '';
+                let legendHtml = '';
+                let position = 0;
+                const scale = 100 / stockLength;
+                const sawKerf = result.parameters.saw_kerf;
+
+                // Group pieces by length
+                const grouped = {};
+                pattern.pieces.forEach(piece => {
+                    if (!grouped[piece.length]) {
+                        grouped[piece.length] = { length: piece.length, count: 0 };
+                    }
+                    grouped[piece.length].count++;
+                });
+
+                // Sort by length descending
+                const sortedGroups = Object.values(grouped).sort((a, b) => b.length - a.length);
+
+                // Draw grouped pieces
+                sortedGroups.forEach((group) => {
+                    const totalWidth = (group.length * group.count + sawKerf * group.count) * scale;
+                    const colorClass = getColor(group.length);
+
+                    // Label for the group
+                    const label = group.count > 1 ? `${group.count}× ${group.length}` : `${group.length}mm`;
+
+                    tubeHtml += `
+                        <div class="tube-piece ${colorClass}"
+                             style="left: ${position * scale}%; width: ${(group.length * group.count + sawKerf * (group.count - 1)) * scale}%;"
+                             title="${group.count}st × ${group.length}mm">
+                            <span class="tube-piece-label">${label}</span>
+                        </div>
+                    `;
+
+                    // Add to legend
+                    legendHtml += `
+                        <div class="legend-item">
+                            <div class="legend-color ${colorClass}"></div>
+                            <span>${group.count}× ${group.length}mm</span>
+                        </div>
+                    `;
+
+                    position += group.length * group.count + sawKerf * group.count;
+                });
+
+                // Calculate remaining space for waste
+                const usedWidth = position * scale;
+                const fixtureWidth = Math.max(fixtureRest * scale, 3);
+                const wasteWidth = Math.max(0, 100 - usedWidth - fixtureWidth);
+
+                // Waste (only if there's meaningful waste)
+                if (pattern.waste > 10) {
+                    tubeHtml += `
+                        <div class="tube-waste"
+                             style="left: ${usedWidth}%; width: ${wasteWidth}%;">
+                            <span>${Math.round(pattern.waste)}mm</span>
+                        </div>
+                    `;
+                } else if (pattern.waste > 0) {
+                    // Small waste - just show as a thin strip
+                    tubeHtml += `
+                        <div class="tube-waste"
+                             style="left: ${usedWidth}%; width: ${wasteWidth}%;">
+                        </div>
+                    `;
+                }
+
+                // Fixture - always on the right
+                tubeHtml += `
+                    <div class="tube-fixture" style="width: ${fixtureWidth}%;">
+                        FIX
+                    </div>
+                `;
+
+                const patternDesc = Object.entries(pattern.counts)
+                    .filter(([_, count]) => count > 0)
+                    .sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
+                    .map(([length, count]) => count > 1 ? `${count}× ${length}` : `${length}`)
+                    .join(' + ');
+
+                patternsHtml += `
+                    <div class="pattern-card">
+                        <div class="pattern-header">
+                            <h3>Mönster ${idx + 1}</h3>
+                            <div class="pattern-count">Antal:<span>${pattern.tube_count} st</span></div>
+                        </div>
+                        <div class="tube-visual">${tubeHtml}</div>
+                        <div class="tube-legend">${legendHtml}</div>
+                        <div class="pattern-info">
+                            <span><strong>Kap:</strong> ${patternDesc} mm</span>
+                            <span><strong>Spill:</strong> ${Math.round(pattern.waste)} mm/rör</span>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('patterns-container').innerHTML = patternsHtml;
+
+            let verificationHtml = '';
+            result.verification.forEach(item => {
+                const statusClass = item.ok ? 'ok' : 'error';
+                const icon = item.ok ? '✓' : '✗';
+                const extra = item.produced > item.needed ? ` (+${item.produced - item.needed})` : '';
+                verificationHtml += `
+                    <div class="verification-item ${statusClass}">
+                        <span><strong>L-${item.length}mm</strong> — ${item.produced} st produceras${extra}</span>
+                        <span>Beställt: ${item.needed} st</span>
+                        <span class="check-icon ${statusClass}">${icon}</span>
+                    </div>
+                `;
+            });
+            document.getElementById('verification-list').innerHTML = verificationHtml;
+
+            // Display buffer suggestions if available
+            const suggestionsCard = document.getElementById('suggestions-card');
+            const suggestionsList = document.getElementById('suggestions-list');
+            const suggestionsIntro = document.getElementById('suggestions-intro');
+
+            if (result.buffer_suggestions && result.buffer_suggestions.length > 0) {
+                suggestionsCard.style.display = 'block';
+
+                suggestionsIntro.innerHTML = `
+                    <strong>Utnyttjandet är ${result.summary.utilization}%</strong><br>
+                    Genom att lägga till extra bitar ("spillätare") kan du förbättra materialutnyttjandet.
+                    Dessa bitar kan användas till framtida ordrar eller som reservdelar.
+                `;
+
+                let suggestionsHtml = '';
+                result.buffer_suggestions.forEach(s => {
+                    suggestionsHtml += `
+                        <div class="suggestion-item">
+                            <div class="suggestion-main">
+                                <span class="suggestion-title">Lägg till ${s.quantity}st × ${s.length}mm</span>
+                                <span class="suggestion-detail">
+                                    Nytt utnyttjande: ${s.new_utilization}% |
+                                    Minskar spill med ${s.waste_reduction}m
+                                    ${s.extra_tubes > 0 ? `| +${s.extra_tubes} rör` : ''}
+                                </span>
+                            </div>
+                            <div class="suggestion-improvement">
+                                <div class="value">+${s.improvement}%</div>
+                                <div class="label">förbättring</div>
+                            </div>
+                            <button class="btn-apply" onclick="applySuggestion(${s.length}, ${s.quantity})">
+                                Lägg till
+                            </button>
+                        </div>
+                    `;
+                });
+                suggestionsList.innerHTML = suggestionsHtml;
+            } else {
+                suggestionsCard.style.display = 'none';
+            }
+        }
+
+        function applySuggestion(length, quantity) {
+            // Gå tillbaka till input och lägg till längden
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('input-section').style.display = 'block';
+
+            // Kolla om längden redan finns
+            let found = false;
+            document.querySelectorAll('.item-row').forEach(row => {
+                const lengthInput = row.querySelector('.item-length');
+                if (parseInt(lengthInput.value) === length) {
+                    const qtyInput = row.querySelector('.item-qty');
+                    qtyInput.value = parseInt(qtyInput.value || 0) + quantity;
+                    found = true;
+                }
+            });
+
+            // Om inte, lägg till ny rad
+            if (!found) {
+                const list = document.getElementById('items-list');
+                const row = document.createElement('div');
+                row.className = 'item-row';
+                row.innerHTML = `
+                    <input type="number" class="item-length" value="${length}">
+                    <input type="number" class="item-qty" value="${quantity}">
+                    <button class="btn-remove" onclick="removeItem(this)">&times;</button>
+                `;
+                list.appendChild(row);
+            }
+
+            // Scrolla till längderna
+            document.getElementById('items-list').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function newOrder() {
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('input-section').style.display = 'block';
+        }
+
+        // Ctrl+E för exempeldata
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'e') {
+                e.preventDefault();
+                document.getElementById('job_name').value = 'Peters kaplista';
+                document.getElementById('material').value = 'Plattovalt 60x40x2mm';
+
+                const items = [
+                    {length: 1240, qty: 55},
+                    {length: 1150, qty: 160},
+                    {length: 567, qty: 136},
+                    {length: 530, qty: 80},
+                    {length: 235, qty: 250}
+                ];
+
+                const list = document.getElementById('items-list');
+                list.innerHTML = '';
+
+                items.forEach((item) => {
+                    const row = document.createElement('div');
+                    row.className = 'item-row';
+                    row.innerHTML = `
+                        <input type="number" class="item-length" value="${item.length}">
+                        <input type="number" class="item-qty" value="${item.qty}">
+                        <button class="btn-remove" onclick="removeItem(this)">&times;</button>
+                    `;
+                    list.appendChild(row);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
