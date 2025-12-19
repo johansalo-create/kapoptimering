@@ -61,11 +61,278 @@
             width: auto;
         }
 
+        .header-logos {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header-logos img:first-child {
+            height: 30px;
+        }
+
+        .header-logos .ael-logo {
+            height: 38px;
+        }
+
+        .logo-separator {
+            color: var(--gray-300);
+            font-size: 18px;
+            font-weight: 300;
+        }
+
         header .tagline {
             font-size: 13px;
             color: var(--gray-500);
             letter-spacing: 0.5px;
             text-transform: uppercase;
+        }
+
+        .lang-switcher {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+
+        .lang-switcher a {
+            color: var(--gray-500);
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .lang-switcher a:hover {
+            color: var(--black);
+        }
+
+        .lang-switcher a.active {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .lang-switcher .separator {
+            margin: 0 6px;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-link {
+            font-size: 13px;
+            color: var(--gray-600);
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.2s;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: var(--black);
+        }
+
+        .nav-link.active {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .nav-separator {
+            color: var(--gray-300);
+        }
+
+        /* About Section */
+        .about-section {
+            display: none;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 24px;
+            padding: 40px;
+        }
+
+        .about-section.visible {
+            display: block;
+        }
+
+        .about-hero {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .about-hero h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 12px;
+        }
+
+        .about-hero p {
+            font-size: 16px;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .stat-card {
+            background: var(--gray-100);
+            padding: 28px;
+            text-align: center;
+        }
+
+        .stat-card .icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .stat-card .value {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--black);
+            line-height: 1;
+        }
+
+        .stat-card .label {
+            font-size: 13px;
+            color: var(--gray-600);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .about-sections {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .about-card {
+            padding: 24px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .about-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about-card h3 .icon {
+            font-size: 20px;
+        }
+
+        .about-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-card li {
+            padding: 8px 0;
+            color: var(--gray-600);
+            font-size: 14px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .about-card li:last-child {
+            border-bottom: none;
+        }
+
+        .about-collab {
+            text-align: center;
+            padding: 32px;
+            background: var(--gray-100);
+        }
+
+        .about-collab h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        .collab-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 48px;
+            margin-bottom: 20px;
+        }
+
+        .collab-logos img {
+            height: 40px;
+            width: auto;
+        }
+
+        .collab-logos .plus {
+            font-size: 24px;
+            color: var(--gray-400);
+            font-weight: 300;
+        }
+
+        .about-collab p {
+            font-size: 14px;
+            color: var(--gray-600);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .about-back {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .about-back button {
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 14px 32px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .about-back button:hover {
+            background: var(--gray-700);
+        }
+
+        .about-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--gray-400);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+
+        .about-close:hover {
+            color: var(--black);
+        }
+
+        .about-section {
+            position: relative;
         }
 
         /* Cards */
@@ -560,6 +827,124 @@
             }
         }
 
+        /* How it works section */
+        .info-section {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 24px;
+        }
+
+        .info-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        .info-toggle:hover {
+            background: var(--gray-100);
+        }
+
+        .info-toggle h2 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--black);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-toggle .icon {
+            font-size: 18px;
+        }
+
+        .info-toggle .arrow {
+            font-size: 12px;
+            color: var(--gray-500);
+            transition: transform 0.2s;
+        }
+
+        .info-section.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        .info-content {
+            display: none;
+            padding: 0 24px 24px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .info-section.open .info-content {
+            display: block;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            background: var(--black);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            margin: 0 auto 12px;
+        }
+
+        .step h3 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--black);
+        }
+
+        .step p {
+            font-size: 12px;
+            color: var(--gray-500);
+            line-height: 1.4;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .term {
+            background: var(--gray-100);
+            padding: 14px;
+        }
+
+        .term strong {
+            font-size: 12px;
+            color: var(--black);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .term span {
+            font-size: 12px;
+            color: var(--gray-500);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .summary-grid {
@@ -573,55 +958,207 @@
                 gap: 8px;
                 text-align: center;
             }
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .terms-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+            .about-sections {
+                grid-template-columns: 1fr;
+            }
+            .collab-logos {
+                flex-direction: column;
+                gap: 24px;
+            }
+            .about-section {
+                padding: 24px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <img src="/static/logo.png" alt="Hyllteknik">
-            <span class="tagline">Kapoptimering</span>
+            <div class="header-logos">
+                <img src="/static/logo.png" alt="Hyllteknik">
+                <span class="logo-separator">×</span>
+                <img src="/static/ael-logo.png" alt="AI Empower Labs" class="ael-logo">
+            </div>
+            <span class="tagline" data-i18n="tagline">Kapoptimering</span>
+            <nav class="header-nav no-print">
+                <a onclick="showAbout()" class="nav-link" data-i18n="whyLink">Varför?</a>
+                <span class="nav-separator">|</span>
+                <div class="lang-switcher">
+                    <a onclick="setLang('sv')" id="lang-sv" class="active">SV</a>
+                    <span class="separator">/</span>
+                    <a onclick="setLang('en')" id="lang-en">EN</a>
+                </div>
+            </nav>
         </header>
+
+        <!-- About Section -->
+        <div class="about-section no-print" id="about-section">
+            <button class="about-close" onclick="hideAbout()" aria-label="Stäng">&times;</button>
+            <div class="about-hero">
+                <h2 data-i18n="aboutHeroTitle">Varje millimeter räknas för klimatet</h2>
+                <p data-i18n="aboutHeroDesc">Optimerad kapning minskar materialspill, sänker kostnader och reducerar miljöpåverkan i verkstadsindustrin.</p>
+            </div>
+
+            <div class="about-stats">
+                <div class="stat-card">
+                    <div class="icon">🌍</div>
+                    <div class="value">-15%</div>
+                    <div class="label" data-i18n="statWaste">Materialspill</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon">⚡</div>
+                    <div class="value">10x</div>
+                    <div class="label" data-i18n="statSpeed">Snabbare beräkning</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon">💰</div>
+                    <div class="value">+5%</div>
+                    <div class="label" data-i18n="statMargin">Marginal per order</div>
+                </div>
+            </div>
+
+            <div class="about-sections">
+                <div class="about-card">
+                    <h3><span class="icon">🌱</span> <span data-i18n="climateTitle">Klimatpåverkan</span></h3>
+                    <ul>
+                        <li data-i18n="climatePoint1">Mindre spill = mindre råvaruutvinning</li>
+                        <li data-i18n="climatePoint2">Reducerad energiförbrukning vid produktion</li>
+                        <li data-i18n="climatePoint3">Lägre transportbehov för material</li>
+                        <li data-i18n="climatePoint4">Minskat avfall till återvinning</li>
+                    </ul>
+                </div>
+                <div class="about-card">
+                    <h3><span class="icon">⏱️</span> <span data-i18n="efficiencyTitle">Tid & Pengar</span></h3>
+                    <ul>
+                        <li data-i18n="efficiencyPoint1">Automatisk optimering istället för manuell beräkning</li>
+                        <li data-i18n="efficiencyPoint2">Direkt visualisering av kapmönster</li>
+                        <li data-i18n="efficiencyPoint3">Spillätare-förslag för maximal effektivitet</li>
+                        <li data-i18n="efficiencyPoint4">Utskriftsvänliga kapinstruktioner</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="about-collab">
+                <h3 data-i18n="collabTitle">Ett samarbete mellan</h3>
+                <div class="collab-logos">
+                    <img src="/static/logo.png" alt="Hyllteknik">
+                    <span class="plus">+</span>
+                    <img src="/static/ael-logo.png" alt="AI Empower Labs">
+                </div>
+                <p data-i18n="collabDesc">Hylltekniks djupa industrikunskap kombinerat med AI Empower Labs expertis inom AI och optimeringsalgoritmer.</p>
+            </div>
+
+            <div class="about-back">
+                <button onclick="hideAbout()" data-i18n="backToApp">Tillbaka till appen</button>
+            </div>
+        </div>
+
+        <!-- How it works -->
+        <div class="info-section no-print" id="info-section">
+            <div class="info-toggle" onclick="toggleInfo()">
+                <h2><span class="icon">?</span> <span data-i18n="howItWorks">Så här funkar det</span></h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="info-content">
+                <div class="steps-grid">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3 data-i18n="step1Title">Ange parametrar</h3>
+                        <p data-i18n="step1Desc">Fyll i rörlängd, fixturrest och kapklingans bredd</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3 data-i18n="step2Title">Lägg till kaplängder</h3>
+                        <p data-i18n="step2Desc">Ange vilka längder du behöver och hur många av varje</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3 data-i18n="step3Title">Beräkna</h3>
+                        <p data-i18n="step3Desc">Klicka på knappen för att optimera kapmönstret</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3 data-i18n="step4Title">Se resultat</h3>
+                        <p data-i18n="step4Desc">Få visuella kapmönster och se materialutnyttjande</p>
+                    </div>
+                </div>
+                <div class="terms-grid">
+                    <div class="term">
+                        <strong data-i18n="termStock">Ursprungslängd</strong>
+                        <span data-i18n="termStockDesc">Längden på råmaterialet du kapar från (t.ex. 6000mm standardrör)</span>
+                    </div>
+                    <div class="term">
+                        <strong data-i18n="termFixture">Fixturrest</strong>
+                        <span data-i18n="termFixtureDesc">Den del av röret som hålls fast i fixturen och inte kan kapas</span>
+                    </div>
+                    <div class="term">
+                        <strong data-i18n="termKerf">Kapklinga</strong>
+                        <span data-i18n="termKerfDesc">Sågbladets bredd som går förlorad vid varje snitt</span>
+                    </div>
+                    <div class="term">
+                        <strong data-i18n="termJob">Jobbnamn & Material</strong>
+                        <span data-i18n="termJobDesc">Frivilligt - visas på utskriften för att identifiera ordern</span>
+                    </div>
+                    <div class="term">
+                        <strong data-i18n="termBuffer">Spillätare</strong>
+                        <span data-i18n="termBufferDesc">Förslag i resultatet på extra bitar som fyller ut spillet och ökar utnyttjandet</span>
+                    </div>
+                    <div class="term">
+                        <strong data-i18n="termPrint">Skriv ut</strong>
+                        <span data-i18n="termPrintDesc">Knapp i resultatet som skriver ut kapinstruktionen för operatören vid sågen</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Input Form -->
         <div id="input-section" class="no-print">
             <div class="card">
-                <div class="card-header">Jobbinformation</div>
+                <div class="card-header" data-i18n="jobInfo">Jobbinformation</div>
                 <div class="form-grid">
                     <div class="form-group">
-                        <label>Jobbnamn / Kund</label>
-                        <input type="text" id="job_name" placeholder="Ange jobbnamn">
+                        <label data-i18n="jobName">Jobbnamn / Kund</label>
+                        <input type="text" id="job_name" data-i18n-placeholder="jobNamePlaceholder" placeholder="Ange jobbnamn">
                     </div>
                     <div class="form-group">
-                        <label>Materialtyp</label>
-                        <input type="text" id="material" placeholder="T.ex. Plattovalt 60x40x2mm">
+                        <label data-i18n="materialType">Materialtyp</label>
+                        <input type="text" id="material" data-i18n-placeholder="materialPlaceholder" placeholder="T.ex. Plattovalt 60x40x2mm">
                     </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-header">Parametrar</div>
+                <div class="card-header" data-i18n="parameters">Parametrar</div>
                 <div class="form-grid">
                     <div class="form-group">
-                        <label>Ursprungslängd (mm)</label>
+                        <label data-i18n="stockLength">Ursprungslängd (mm)</label>
                         <input type="number" id="stock_length" value="6000">
                     </div>
                     <div class="form-group">
-                        <label>Fixturrest (mm)</label>
+                        <label data-i18n="fixtureRest">Fixturrest (mm)</label>
                         <input type="number" id="fixture_rest" value="50">
                     </div>
                     <div class="form-group">
-                        <label>Kapklinga (mm)</label>
+                        <label data-i18n="sawKerf">Kapklinga (mm)</label>
                         <input type="number" id="saw_kerf" value="2.5" step="0.1">
                     </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-header">Kaplängder</div>
+                <div class="card-header" data-i18n="cutLengths">Kaplängder</div>
                 <div class="items-header">
-                    <span>Längd (mm)</span>
-                    <span>Antal (st)</span>
+                    <span data-i18n="length">Längd (mm)</span>
+                    <span data-i18n="quantity">Antal (st)</span>
                     <span></span>
                 </div>
                 <div id="items-list">
@@ -631,10 +1168,10 @@
                         <button class="btn-remove" onclick="removeItem(this)">&times;</button>
                     </div>
                 </div>
-                <button class="btn-add" onclick="addItem()">+ Lägg till rad</button>
+                <button class="btn-add" onclick="addItem()" data-i18n="addRow">+ Lägg till rad</button>
             </div>
 
-            <button class="btn btn-run" id="run-btn" onclick="runOptimization()">
+            <button class="btn btn-run" id="run-btn" onclick="runOptimization()" data-i18n="calculate">
                 Beräkna optimalt kapmönster
             </button>
         </div>
@@ -643,39 +1180,287 @@
         <div id="results">
             <div class="print-header">
                 <img src="/static/logo.png" alt="Hyllteknik">
-                <h2>KAPINSTRUKTION</h2>
+                <h2 data-i18n="cutInstruction">KAPINSTRUKTION</h2>
                 <p id="print-job-info"></p>
             </div>
 
             <div class="card">
-                <div class="card-header">Sammanfattning</div>
+                <div class="card-header" data-i18n="summary">Sammanfattning</div>
                 <div class="summary-grid" id="summary-grid"></div>
             </div>
 
             <div class="card">
-                <div class="card-header">Kapmönster</div>
+                <div class="card-header" data-i18n="cutPatterns">Kapmönster</div>
                 <div id="patterns-container"></div>
             </div>
 
             <div class="card">
-                <div class="card-header">Kontroll</div>
+                <div class="card-header" data-i18n="verification">Kontroll</div>
                 <div id="verification-list"></div>
             </div>
 
             <div class="card" id="suggestions-card" style="display: none;">
-                <div class="card-header">Optimeringsförslag</div>
+                <div class="card-header" data-i18n="suggestions">Optimeringsförslag</div>
                 <div class="suggestions-intro" id="suggestions-intro"></div>
                 <div id="suggestions-list"></div>
             </div>
 
             <div class="actions no-print">
-                <button class="btn btn-primary" onclick="window.print()">Skriv ut</button>
-                <button class="btn btn-secondary" onclick="newOrder()">Ny beställning</button>
+                <button class="btn btn-primary" onclick="window.print()" data-i18n="print">Skriv ut</button>
+                <button class="btn btn-secondary" onclick="newOrder()" data-i18n="newOrder">Ny beställning</button>
             </div>
         </div>
     </div>
 
     <script>
+        // Translations
+        const translations = {
+            sv: {
+                tagline: 'Kapoptimering',
+                howItWorks: 'Så här funkar det',
+                step1Title: 'Ange parametrar',
+                step1Desc: 'Fyll i rörlängd, fixturrest och kapklingans bredd',
+                step2Title: 'Lägg till kaplängder',
+                step2Desc: 'Ange vilka längder du behöver och hur många av varje',
+                step3Title: 'Beräkna',
+                step3Desc: 'Klicka på knappen för att optimera kapmönstret',
+                step4Title: 'Se resultat',
+                step4Desc: 'Få visuella kapmönster och se materialutnyttjande',
+                termStock: 'Ursprungslängd',
+                termStockDesc: 'Längden på råmaterialet du kapar från (t.ex. 6000mm standardrör)',
+                termFixture: 'Fixturrest',
+                termFixtureDesc: 'Den del av röret som hålls fast i fixturen och inte kan kapas',
+                termKerf: 'Kapklinga',
+                termKerfDesc: 'Sågbladets bredd som går förlorad vid varje snitt',
+                termJob: 'Jobbnamn & Material',
+                termJobDesc: 'Frivilligt - visas på utskriften för att identifiera ordern',
+                termBuffer: 'Spillätare',
+                termBufferDesc: 'Förslag i resultatet på extra bitar som fyller ut spillet och ökar utnyttjandet',
+                termPrint: 'Skriv ut',
+                termPrintDesc: 'Knapp i resultatet som skriver ut kapinstruktionen för operatören vid sågen',
+                jobInfo: 'Jobbinformation',
+                jobName: 'Jobbnamn / Kund',
+                jobNamePlaceholder: 'Ange jobbnamn',
+                materialType: 'Materialtyp',
+                materialPlaceholder: 'T.ex. Plattovalt 60x40x2mm',
+                parameters: 'Parametrar',
+                stockLength: 'Ursprungslängd (mm)',
+                fixtureRest: 'Fixturrest (mm)',
+                sawKerf: 'Kapklinga (mm)',
+                cutLengths: 'Kaplängder',
+                length: 'Längd (mm)',
+                quantity: 'Antal (st)',
+                addRow: '+ Lägg till rad',
+                calculate: 'Beräkna optimalt kapmönster',
+                cutInstruction: 'KAPINSTRUKTION',
+                summary: 'Sammanfattning',
+                cutPatterns: 'Kapmönster',
+                verification: 'Kontroll',
+                suggestions: 'Optimeringsförslag',
+                print: 'Skriv ut',
+                newOrder: 'Ny beställning',
+                totalTubes: 'Antal rör',
+                totalWaste: 'Totalt spill',
+                materialUsage: 'Materialåtgång',
+                utilization: 'Utnyttjande',
+                pattern: 'Mönster',
+                count: 'Antal:',
+                cut: 'Kap:',
+                waste: 'Spill:',
+                perTube: '/rör',
+                produced: 'produceras',
+                ordered: 'Beställt:',
+                pcs: 'st',
+                utilizationIs: 'Utnyttjandet är',
+                bufferIntro: 'Genom att lägga till extra bitar ("spillätare") kan du förbättra materialutnyttjandet. Dessa bitar kan användas till framtida ordrar eller som reservdelar.',
+                addBuffer: 'Lägg till',
+                newUtil: 'Nytt utnyttjande:',
+                reducesWaste: 'Minskar spill med',
+                improvement: 'förbättring',
+                noItems: 'Lägg till minst en kaplängd',
+                calculating: 'Beräknar...',
+                errorOptimizing: 'Fel vid optimering:',
+                // About section
+                whyLink: 'Varför?',
+                aboutHeroTitle: 'Varje millimeter räknas för klimatet',
+                aboutHeroDesc: 'Optimerad kapning minskar materialspill, sänker kostnader och reducerar miljöpåverkan i verkstadsindustrin.',
+                statWaste: 'Materialspill',
+                statSpeed: 'Snabbare beräkning',
+                statMargin: 'Marginal per order',
+                climateTitle: 'Klimatpåverkan',
+                climatePoint1: 'Mindre spill = mindre råvaruutvinning',
+                climatePoint2: 'Reducerad energiförbrukning vid produktion',
+                climatePoint3: 'Lägre transportbehov för material',
+                climatePoint4: 'Minskat avfall till återvinning',
+                efficiencyTitle: 'Tid & Pengar',
+                efficiencyPoint1: 'Automatisk optimering istället för manuell beräkning',
+                efficiencyPoint2: 'Direkt visualisering av kapmönster',
+                efficiencyPoint3: 'Spillätare-förslag för maximal effektivitet',
+                efficiencyPoint4: 'Utskriftsvänliga kapinstruktioner',
+                collabTitle: 'Ett samarbete mellan',
+                collabDesc: 'Hylltekniks djupa industrikunskap kombinerat med AI Empower Labs expertis inom AI och optimeringsalgoritmer.',
+                backToApp: 'Tillbaka till appen'
+            },
+            en: {
+                tagline: 'Cut Optimization',
+                howItWorks: 'How it works',
+                step1Title: 'Set parameters',
+                step1Desc: 'Enter tube length, fixture rest and saw kerf width',
+                step2Title: 'Add cut lengths',
+                step2Desc: 'Specify the lengths you need and how many of each',
+                step3Title: 'Calculate',
+                step3Desc: 'Click the button to optimize the cutting pattern',
+                step4Title: 'View results',
+                step4Desc: 'Get visual cutting patterns and see material utilization',
+                termStock: 'Stock length',
+                termStockDesc: 'The length of the raw material you cut from (e.g. 6000mm standard tube)',
+                termFixture: 'Fixture rest',
+                termFixtureDesc: 'The part of the tube held in the fixture that cannot be cut',
+                termKerf: 'Saw kerf',
+                termKerfDesc: 'The width of the saw blade lost with each cut',
+                termJob: 'Job name & Material',
+                termJobDesc: 'Optional - shown on printout to identify the order',
+                termBuffer: 'Buffer pieces',
+                termBufferDesc: 'Suggestions in the result for extra pieces that fill waste and increase utilization',
+                termPrint: 'Print',
+                termPrintDesc: 'Button in the result that prints the cutting instruction for the operator at the saw',
+                jobInfo: 'Job Information',
+                jobName: 'Job Name / Customer',
+                jobNamePlaceholder: 'Enter job name',
+                materialType: 'Material Type',
+                materialPlaceholder: 'E.g. Flat oval 60x40x2mm',
+                parameters: 'Parameters',
+                stockLength: 'Stock Length (mm)',
+                fixtureRest: 'Fixture Rest (mm)',
+                sawKerf: 'Saw Kerf (mm)',
+                cutLengths: 'Cut Lengths',
+                length: 'Length (mm)',
+                quantity: 'Quantity (pcs)',
+                addRow: '+ Add row',
+                calculate: 'Calculate optimal cutting pattern',
+                cutInstruction: 'CUT INSTRUCTION',
+                summary: 'Summary',
+                cutPatterns: 'Cutting Patterns',
+                verification: 'Verification',
+                suggestions: 'Optimization Suggestions',
+                print: 'Print',
+                newOrder: 'New Order',
+                totalTubes: 'Total tubes',
+                totalWaste: 'Total waste',
+                materialUsage: 'Material usage',
+                utilization: 'Utilization',
+                pattern: 'Pattern',
+                count: 'Count:',
+                cut: 'Cut:',
+                waste: 'Waste:',
+                perTube: '/tube',
+                produced: 'produced',
+                ordered: 'Ordered:',
+                pcs: 'pcs',
+                utilizationIs: 'Utilization is',
+                bufferIntro: 'By adding extra pieces ("buffer pieces") you can improve material utilization. These pieces can be used for future orders or as spare parts.',
+                addBuffer: 'Add',
+                newUtil: 'New utilization:',
+                reducesWaste: 'Reduces waste by',
+                improvement: 'improvement',
+                noItems: 'Add at least one cut length',
+                calculating: 'Calculating...',
+                errorOptimizing: 'Error optimizing:',
+                // About section
+                whyLink: 'Why?',
+                aboutHeroTitle: 'Every millimeter counts for the climate',
+                aboutHeroDesc: 'Optimized cutting reduces material waste, lowers costs and reduces environmental impact in the manufacturing industry.',
+                statWaste: 'Material waste',
+                statSpeed: 'Faster calculation',
+                statMargin: 'Margin per order',
+                climateTitle: 'Climate Impact',
+                climatePoint1: 'Less waste = less raw material extraction',
+                climatePoint2: 'Reduced energy consumption in production',
+                climatePoint3: 'Lower transportation needs for materials',
+                climatePoint4: 'Reduced waste for recycling',
+                efficiencyTitle: 'Time & Money',
+                efficiencyPoint1: 'Automatic optimization instead of manual calculation',
+                efficiencyPoint2: 'Instant visualization of cutting patterns',
+                efficiencyPoint3: 'Buffer piece suggestions for maximum efficiency',
+                efficiencyPoint4: 'Print-friendly cutting instructions',
+                collabTitle: 'A collaboration between',
+                collabDesc: 'Hyllteknik\'s deep industry knowledge combined with AI Empower Labs\' expertise in AI and optimization algorithms.',
+                backToApp: 'Back to the app'
+            }
+        };
+
+        let currentLang = localStorage.getItem('lang') || 'sv';
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            applyTranslations();
+            updateLangButtons();
+        }
+
+        function applyTranslations() {
+            const t = translations[currentLang];
+
+            // Update text content
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) {
+                    el.textContent = t[key];
+                }
+            });
+
+            // Update placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (t[key]) {
+                    el.placeholder = t[key];
+                }
+            });
+        }
+
+        function updateLangButtons() {
+            document.getElementById('lang-sv').classList.toggle('active', currentLang === 'sv');
+            document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
+        }
+
+        function t(key) {
+            return translations[currentLang][key] || key;
+        }
+
+        // Initialize language on load
+        document.addEventListener('DOMContentLoaded', () => {
+            applyTranslations();
+            updateLangButtons();
+        });
+
+        // Toggle info section
+        function toggleInfo() {
+            document.getElementById('info-section').classList.toggle('open');
+        }
+
+        // About section toggle
+        function showAbout() {
+            const aboutSection = document.getElementById('about-section');
+            const isVisible = aboutSection.classList.contains('visible');
+
+            if (isVisible) {
+                hideAbout();
+            } else {
+                aboutSection.classList.add('visible');
+                document.getElementById('info-section').style.display = 'none';
+                document.getElementById('input-section').style.display = 'none';
+                document.getElementById('results').style.display = 'none';
+                document.querySelector('.nav-link').classList.add('active');
+            }
+        }
+
+        function hideAbout() {
+            document.getElementById('about-section').classList.remove('visible');
+            document.getElementById('info-section').style.display = '';
+            document.getElementById('input-section').style.display = '';
+            document.querySelector('.nav-link').classList.remove('active');
+        }
+
         const colorMap = {};
         let colorIndex = 0;
 
@@ -730,14 +1515,14 @@
             const data = getFormData();
 
             if (data.items.length === 0) {
-                alert('Lägg till minst en kaplängd');
+                alert(t('noItems'));
                 return;
             }
 
             // Show loading state
             const btn = document.getElementById('run-btn');
             const originalText = btn.textContent;
-            btn.textContent = 'Beräknar...';
+            btn.textContent = t('calculating');
             btn.disabled = true;
             btn.style.opacity = '0.7';
 
@@ -762,7 +1547,7 @@
 
             } catch (error) {
                 console.error('Error:', error);
-                alert('Fel vid optimering: ' + error.message);
+                alert(t('errorOptimizing') + ' ' + error.message);
             } finally {
                 // Reset button
                 btn.textContent = originalText;
@@ -775,27 +1560,28 @@
             document.getElementById('input-section').style.display = 'none';
             document.getElementById('results').style.display = 'block';
 
+            const notSpecified = currentLang === 'sv' ? 'Ej angivet' : 'Not specified';
             document.getElementById('print-job-info').innerHTML = `
-                ${result.job_name || 'Ej angivet'} &mdash; ${result.material || 'Ej angivet'}<br>
+                ${result.job_name || notSpecified} &mdash; ${result.material || notSpecified}<br>
                 <small>${result.timestamp}</small>
             `;
 
             const summaryHtml = `
                 <div class="summary-item">
                     <div class="value">${result.summary.total_tubes}</div>
-                    <div class="label">Antal rör</div>
+                    <div class="label">${t('totalTubes')}</div>
                 </div>
                 <div class="summary-item">
                     <div class="value">${result.summary.total_waste_m}m</div>
-                    <div class="label">Totalt spill</div>
+                    <div class="label">${t('totalWaste')}</div>
                 </div>
                 <div class="summary-item">
                     <div class="value">${result.summary.total_material_m}m</div>
-                    <div class="label">Materialåtgång</div>
+                    <div class="label">${t('materialUsage')}</div>
                 </div>
                 <div class="summary-item">
                     <div class="value">${result.summary.utilization}%</div>
-                    <div class="label">Utnyttjande</div>
+                    <div class="label">${t('utilization')}</div>
                 </div>
             `;
             document.getElementById('summary-grid').innerHTML = summaryHtml;
@@ -889,14 +1675,14 @@
                 patternsHtml += `
                     <div class="pattern-card">
                         <div class="pattern-header">
-                            <h3>Mönster ${idx + 1}</h3>
-                            <div class="pattern-count">Antal:<span>${pattern.tube_count} st</span></div>
+                            <h3>${t('pattern')} ${idx + 1}</h3>
+                            <div class="pattern-count">${t('count')}<span>${pattern.tube_count} ${t('pcs')}</span></div>
                         </div>
                         <div class="tube-visual">${tubeHtml}</div>
                         <div class="tube-legend">${legendHtml}</div>
                         <div class="pattern-info">
-                            <span><strong>Kap:</strong> ${patternDesc} mm</span>
-                            <span><strong>Spill:</strong> ${Math.round(pattern.waste)} mm/rör</span>
+                            <span><strong>${t('cut')}</strong> ${patternDesc} mm</span>
+                            <span><strong>${t('waste')}</strong> ${Math.round(pattern.waste)} mm${t('perTube')}</span>
                         </div>
                     </div>
                 `;
@@ -910,8 +1696,8 @@
                 const extra = item.produced > item.needed ? ` (+${item.produced - item.needed})` : '';
                 verificationHtml += `
                     <div class="verification-item ${statusClass}">
-                        <span><strong>L-${item.length}mm</strong> — ${item.produced} st produceras${extra}</span>
-                        <span>Beställt: ${item.needed} st</span>
+                        <span><strong>L-${item.length}mm</strong> — ${item.produced} ${t('pcs')} ${t('produced')}${extra}</span>
+                        <span>${t('ordered')} ${item.needed} ${t('pcs')}</span>
                         <span class="check-icon ${statusClass}">${icon}</span>
                     </div>
                 `;
@@ -926,10 +1712,10 @@
             if (result.buffer_suggestions && result.buffer_suggestions.length > 0) {
                 suggestionsCard.style.display = 'block';
 
+                const tubesWord = currentLang === 'sv' ? 'rör' : 'tubes';
                 suggestionsIntro.innerHTML = `
-                    <strong>Utnyttjandet är ${result.summary.utilization}%</strong><br>
-                    Genom att lägga till extra bitar ("spillätare") kan du förbättra materialutnyttjandet.
-                    Dessa bitar kan användas till framtida ordrar eller som reservdelar.
+                    <strong>${t('utilizationIs')} ${result.summary.utilization}%</strong><br>
+                    ${t('bufferIntro')}
                 `;
 
                 let suggestionsHtml = '';
@@ -937,19 +1723,19 @@
                     suggestionsHtml += `
                         <div class="suggestion-item">
                             <div class="suggestion-main">
-                                <span class="suggestion-title">Lägg till ${s.quantity}st × ${s.length}mm</span>
+                                <span class="suggestion-title">${t('addBuffer')} ${s.quantity}${t('pcs')} × ${s.length}mm</span>
                                 <span class="suggestion-detail">
-                                    Nytt utnyttjande: ${s.new_utilization}% |
-                                    Minskar spill med ${s.waste_reduction}m
-                                    ${s.extra_tubes > 0 ? `| +${s.extra_tubes} rör` : ''}
+                                    ${t('newUtil')} ${s.new_utilization}% |
+                                    ${t('reducesWaste')} ${s.waste_reduction}m
+                                    ${s.extra_tubes > 0 ? `| +${s.extra_tubes} ${tubesWord}` : ''}
                                 </span>
                             </div>
                             <div class="suggestion-improvement">
                                 <div class="value">+${s.improvement}%</div>
-                                <div class="label">förbättring</div>
+                                <div class="label">${t('improvement')}</div>
                             </div>
                             <button class="btn-apply" onclick="applySuggestion(${s.length}, ${s.quantity})">
-                                Lägg till
+                                ${t('addBuffer')}
                             </button>
                         </div>
                     `;
