@@ -39,7 +39,7 @@ Innan push, kör: `gh auth switch -u johansalo-create`
 |-----|------|-------|
 | A | kapoptimering | 76.76.21.21 |
 
-**Kontakt:** Terese på Hylltekniks marknadsavdelning
+**Kontakt:** Hylltekniks marknadsavdelning
 
 ## Lokal utveckling
 ```bash
