@@ -22,7 +22,19 @@ Innan push, kör: `gh auth switch -u johansalo-create`
 - **Team:** aiempowerlabs
 - **Projekt:** kapoptimering
 - **Auto-deploy:** Ja, från GitHub main-branch
-- **URL:** https://kapoptimering-aiempowerlabs.vercel.app (eller liknande)
+- **Preview URL:** https://kapoptimering-aiempowerlabs.vercel.app
+
+## Custom Domain
+- **Domän:** kapoptimering.hyllteknik.se
+- **Status:** Tillagd i Vercel, väntar på DNS
+- **DNS-leverantör:** ilait.se (Hylltekniks webbleverantör)
+
+**DNS-inställning som behövs:**
+| Typ | Namn | Värde |
+|-----|------|-------|
+| A | kapoptimering | 76.76.21.21 |
+
+**Kontakt:** Terese på Hylltekniks marknadsavdelning
 
 ## Lokal utveckling
 ```bash
