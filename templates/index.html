@@ -811,37 +811,203 @@
         }
 
         /* Print Styles */
-        @media print {
-            body { background: white; }
-            .no-print { display: none !important; }
-            .card { border: 1px solid #ddd; break-inside: avoid; }
-            .pattern-card { break-inside: avoid; }
-            .tube-piece, .tube-waste, .tube-fixture {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-        }
-
         .print-header {
             display: none;
-            text-align: center;
-            margin-bottom: 32px;
-            padding-bottom: 24px;
-            border-bottom: 2px solid var(--black);
+        }
+
+        .print-climate-note {
+            display: none;
         }
 
         @media print {
-            .print-header {
+            @page {
+                size: A4;
+                margin: 10mm;
+            }
+
+            body {
+                background: white;
+                font-size: 10px;
+                line-height: 1.3;
+            }
+
+            .container {
+                padding: 0;
+                max-width: 100%;
+            }
+
+            .no-print { display: none !important; }
+            #suggestions-card { display: none !important; }
+
+            /* Dölj huvudheadern vid print */
+            header { display: none !important; }
+
+            .print-climate-note {
                 display: block;
+                text-align: center;
+                font-size: 7px;
+                color: #888;
+                margin: 0 0 8px 0;
+                font-style: italic;
             }
+
+            /* Print Header - kompakt */
+            .print-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 12px;
+                padding-bottom: 8px;
+                border-bottom: 2px solid var(--black);
+            }
+
             .print-header img {
-                height: 28px;
+                height: 24px;
             }
+
             .print-header h2 {
-                font-size: 18px;
-                font-weight: 600;
-                margin-top: 12px;
-                letter-spacing: 2px;
+                font-size: 14px;
+                font-weight: 700;
+                letter-spacing: 1px;
+                margin: 0;
+            }
+
+            .print-header p {
+                font-size: 9px;
+                color: var(--gray-600);
+                margin: 0;
+                text-align: right;
+            }
+
+            /* Cards - minimal */
+            .card {
+                border: 1px solid #ccc;
+                margin-bottom: 8px;
+                padding: 8px 12px;
+                break-inside: avoid;
+            }
+
+            .card-header {
+                font-size: 9px;
+                margin-bottom: 6px;
+                padding-bottom: 4px;
+            }
+
+            /* Summary - kompakt horisontell */
+            .summary-grid {
+                display: flex;
+                gap: 0;
+                border: none;
+                background: none;
+            }
+
+            .summary-item {
+                flex: 1;
+                padding: 6px 8px;
+                text-align: center;
+                border-right: 1px solid #ddd;
+            }
+
+            .summary-item:last-child {
+                border-right: none;
+            }
+
+            .summary-item .value {
+                font-size: 16px;
+            }
+
+            .summary-item .label {
+                font-size: 8px;
+                margin-top: 2px;
+            }
+
+            /* Pattern Cards - ultrakompakt */
+            .pattern-card {
+                border: 1px solid #ccc;
+                margin-bottom: 4px;
+                break-inside: avoid;
+            }
+
+            .pattern-header {
+                padding: 3px 8px;
+                border-bottom: none;
+            }
+
+            .pattern-header h3 {
+                font-size: 9px;
+            }
+
+            .pattern-count {
+                font-size: 9px;
+            }
+
+            .pattern-count span {
+                padding: 1px 4px;
+                font-size: 8px;
+            }
+
+            /* Tube Visual - minimal */
+            .tube-visual {
+                height: 24px;
+                margin: 4px 8px;
+            }
+
+            .tube-piece {
+                font-size: 7px;
+            }
+
+            .tube-piece-label {
+                padding: 0 1px;
+            }
+
+            .tube-waste span {
+                font-size: 6px;
+                padding: 0 2px;
+            }
+
+            .tube-fixture {
+                font-size: 6px;
+                min-width: 16px;
+            }
+
+            /* Dölj legend vid print - info räcker */
+            .tube-legend {
+                display: none;
+            }
+
+            /* Pattern Info - inline */
+            .pattern-info {
+                padding: 2px 8px;
+                gap: 12px;
+                font-size: 8px;
+                border-top: none;
+            }
+
+            /* Verification - ultrakompakt */
+            #verification-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2px 8px;
+            }
+
+            .verification-item {
+                padding: 2px 6px;
+                font-size: 8px;
+                border-bottom: none;
+                border-left-width: 2px;
+                flex: 0 0 auto;
+            }
+
+            .check-icon {
+                font-size: 8px;
+            }
+
+            /* Färger vid utskrift */
+            .tube-piece, .tube-waste, .tube-fixture,
+            .color-0, .color-1, .color-2, .color-3, .color-4, .color-5,
+            .pattern-count span, .summary-item {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
         }
 
@@ -1224,6 +1390,7 @@
                 <h2 data-i18n="cutInstruction">KAPINSTRUKTION</h2>
                 <p id="print-job-info"></p>
             </div>
+            <p class="print-climate-note">1 sida = mindre klimatpåverkan</p>
 
             <div class="card">
                 <div class="card-header" data-i18n="summary">Sammanfattning</div>
