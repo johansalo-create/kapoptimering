@@ -1,5 +1,10 @@
 # Kapoptimering
 
+## Vid uppstart
+Läs senaste sessionsloggen i `claude-logs/` för kontext från tidigare arbete.
+
+---
+
 Webapp för optimering av kapning av rör/stänger för att minimera spill.
 
 ## Samarbete
