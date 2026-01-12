@@ -49,43 +49,61 @@
         /* Header */
         header {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 0;
+            flex-direction: column;
             margin-bottom: 40px;
-            border-bottom: 1px solid var(--gray-200);
         }
 
-        header img {
-            height: 32px;
-            width: auto;
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 0;
+            gap: 32px;
         }
 
         .header-logos {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 24px;
         }
 
         .header-logos img:first-child {
-            height: 30px;
+            height: 48px;
         }
 
         .header-logos .ael-logo {
-            height: 38px;
+            height: 56px;
         }
 
         .logo-separator {
-            color: var(--gray-300);
-            font-size: 18px;
+            color: var(--gray-400);
+            font-size: 24px;
             font-weight: 300;
         }
 
+        .header-divider {
+            height: 1px;
+            background: var(--gray-200);
+            width: 100%;
+        }
+
+        .header-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+        }
+
         header .tagline {
-            font-size: 13px;
-            color: var(--gray-500);
-            letter-spacing: 0.5px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--black);
+            letter-spacing: 1.5px;
             text-transform: uppercase;
+        }
+
+        header .header-nav {
+            margin-left: auto;
         }
 
         .lang-switcher {
@@ -953,10 +971,28 @@
             .form-grid {
                 grid-template-columns: 1fr;
             }
-            header {
+            .header-top {
+                padding: 16px 0;
+            }
+            .header-logos {
+                gap: 16px;
+            }
+            .header-logos img:first-child {
+                height: 36px;
+            }
+            .header-logos .ael-logo {
+                height: 42px;
+            }
+            .logo-separator {
+                font-size: 18px;
+            }
+            .header-bottom {
                 flex-direction: column;
-                gap: 8px;
+                gap: 12px;
                 text-align: center;
+            }
+            header .header-nav {
+                margin-left: 0;
             }
             .steps-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -983,21 +1019,26 @@
 <body>
     <div class="container">
         <header>
-            <div class="header-logos">
-                <img src="/static/logo.png" alt="Hyllteknik">
-                <span class="logo-separator">×</span>
-                <img src="/static/ael-logo.png" alt="AI Empower Labs" class="ael-logo">
-            </div>
-            <span class="tagline" data-i18n="tagline">Kapoptimering</span>
-            <nav class="header-nav no-print">
-                <a onclick="showAbout()" class="nav-link" data-i18n="whyLink">Varför?</a>
-                <span class="nav-separator">|</span>
-                <div class="lang-switcher">
-                    <a onclick="setLang('sv')" id="lang-sv" class="active">SV</a>
-                    <span class="separator">/</span>
-                    <a onclick="setLang('en')" id="lang-en">EN</a>
+            <div class="header-top">
+                <div class="header-logos">
+                    <img src="/static/logo.png" alt="Hyllteknik">
+                    <span class="logo-separator">×</span>
+                    <img src="/static/ael-logo.png" alt="AI Empower Labs" class="ael-logo">
                 </div>
-            </nav>
+            </div>
+            <div class="header-divider"></div>
+            <div class="header-bottom">
+                <span class="tagline" data-i18n="tagline">Kapoptimering</span>
+                <nav class="header-nav no-print">
+                    <a onclick="showAbout()" class="nav-link" data-i18n="whyLink">Varför?</a>
+                    <span class="nav-separator">|</span>
+                    <div class="lang-switcher">
+                        <a onclick="setLang('sv')" id="lang-sv" class="active">SV</a>
+                        <span class="separator">/</span>
+                        <a onclick="setLang('en')" id="lang-en">EN</a>
+                    </div>
+                </nav>
+            </div>
         </header>
 
         <!-- About Section -->
@@ -1783,6 +1824,32 @@
             document.getElementById('results').style.display = 'none';
             document.getElementById('input-section').style.display = 'block';
         }
+
+        // Enter för att hoppa till nästa fält
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && e.target.tagName === 'INPUT') {
+                e.preventDefault();
+
+                // Kolla om vi är i ett antal-fält i kaplängder
+                if (e.target.classList.contains('item-qty')) {
+                    // Lägg till ny rad och fokusera på längd-fältet
+                    addItem();
+                    const rows = document.querySelectorAll('.item-row');
+                    const lastRow = rows[rows.length - 1];
+                    const lengthInput = lastRow.querySelector('.item-length');
+                    lengthInput.focus();
+                } else {
+                    // Hitta alla synliga input-fält
+                    const inputs = Array.from(document.querySelectorAll('input:not([type="hidden"])'))
+                        .filter(input => input.offsetParent !== null);
+                    const currentIndex = inputs.indexOf(e.target);
+
+                    if (currentIndex > -1 && currentIndex < inputs.length - 1) {
+                        inputs[currentIndex + 1].focus();
+                    }
+                }
+            }
+        });
 
         // Ctrl+E för exempeldata
         document.addEventListener('keydown', (e) => {
