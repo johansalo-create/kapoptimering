@@ -851,32 +851,69 @@
                 font-style: italic;
             }
 
-            /* Print Header - kompakt */
+            /* Print Header - kompakt 3-kolumn */
             .print-header {
                 display: flex;
-                align-items: center;
+                align-items: flex-start;
                 justify-content: space-between;
-                margin-bottom: 12px;
-                padding-bottom: 8px;
+                margin-bottom: 10px;
+                padding-bottom: 6px;
                 border-bottom: 2px solid var(--black);
+                gap: 12px;
             }
 
-            .print-header img {
+            .print-header-left {
+                flex: 0 0 auto;
+            }
+
+            .print-logos {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .print-logos img {
+                height: 20px;
+            }
+
+            .print-logos .print-ael-logo {
                 height: 24px;
             }
 
-            .print-header h2 {
-                font-size: 14px;
+            .print-logo-sep {
+                color: var(--gray-400);
+                font-size: 12px;
+                font-weight: 300;
+            }
+
+            .print-header-center {
+                flex: 1;
+                text-align: center;
+            }
+
+            .print-header-center h2 {
+                font-size: 12px;
                 font-weight: 700;
                 letter-spacing: 1px;
                 margin: 0;
             }
 
-            .print-header p {
+            .print-header-center p {
                 font-size: 9px;
                 color: var(--gray-600);
-                margin: 0;
+                margin: 2px 0 0 0;
+            }
+
+            .print-header-right {
+                flex: 0 0 auto;
                 text-align: right;
+            }
+
+            .print-header-right p {
+                font-size: 8px;
+                color: var(--gray-600);
+                margin: 0;
+                line-height: 1.4;
             }
 
             /* Cards - minimal */
@@ -1386,9 +1423,20 @@
         <!-- Results Section -->
         <div id="results">
             <div class="print-header">
-                <img src="/static/logo.png" alt="Hyllteknik">
-                <h2 data-i18n="cutInstruction">KAPINSTRUKTION</h2>
-                <p id="print-job-info"></p>
+                <div class="print-header-left">
+                    <div class="print-logos">
+                        <img src="/static/logo.png" alt="Hyllteknik">
+                        <span class="print-logo-sep">×</span>
+                        <img src="/static/ael-logo.png" alt="AI Empower Labs" class="print-ael-logo">
+                    </div>
+                </div>
+                <div class="print-header-center">
+                    <h2 data-i18n="cutInstruction">KAPINSTRUKTION</h2>
+                    <p id="print-job-info"></p>
+                </div>
+                <div class="print-header-right">
+                    <p id="print-params-info"></p>
+                </div>
             </div>
             <p class="print-climate-note">1 sida = mindre klimatpåverkan</p>
 
@@ -1770,8 +1818,18 @@
 
             const notSpecified = currentLang === 'sv' ? 'Ej angivet' : 'Not specified';
             document.getElementById('print-job-info').innerHTML = `
-                ${result.job_name || notSpecified} &mdash; ${result.material || notSpecified}<br>
+                <strong>${result.job_name || notSpecified}</strong> &mdash; ${result.material || notSpecified}<br>
                 <small>${result.timestamp}</small>
+            `;
+
+            // Parameters for print
+            const stockLabel = currentLang === 'sv' ? 'Ursprungsl.' : 'Stock';
+            const fixtureLabel = currentLang === 'sv' ? 'Fixturrest' : 'Fixture';
+            const kerfLabel = currentLang === 'sv' ? 'Kapklinga' : 'Kerf';
+            document.getElementById('print-params-info').innerHTML = `
+                ${stockLabel}: ${result.parameters.stock_length}mm<br>
+                ${fixtureLabel}: ${result.parameters.fixture_rest}mm<br>
+                ${kerfLabel}: ${result.parameters.saw_kerf}mm
             `;
 
             const summaryHtml = `
