@@ -2024,7 +2024,7 @@
                 const patternDesc = Object.entries(pattern.counts)
                     .filter(([_, count]) => count > 0)
                     .sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
-                    .map(([length, count]) => count > 1 ? `${count}× ${length}` : `${length}`)
+                    .map(([length, count]) => `${count}× ${length}mm`)
                     .join(' + ');
 
                 patternsHtml += `
@@ -2036,7 +2036,7 @@
                         <div class="tube-visual">${tubeHtml}</div>
                         <div class="tube-legend">${legendHtml}</div>
                         <div class="pattern-info">
-                            <span><strong>${t('cut')}</strong> ${patternDesc} mm</span>
+                            <span><strong>${t('cut')}</strong> ${patternDesc}</span>
                             <span><strong>${t('waste')}</strong> ${Math.round(pattern.waste)} mm${t('perTube')}</span>
                         </div>
                     </div>
