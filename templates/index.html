@@ -544,6 +544,9 @@
             background: var(--white);
             padding: 24px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .summary-item .value {
@@ -559,6 +562,25 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-top: 8px;
+        }
+
+        /* Dölj separator och parameter-boxar på skärm */
+        .summary-separator {
+            display: none;
+        }
+
+        .summary-item.print-only {
+            display: none;
+        }
+
+        .summary-material .value {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .summary-material .label {
+            font-size: 11px;
+            text-transform: none;
         }
 
         /* Pattern Cards */
@@ -663,6 +685,33 @@
             letter-spacing: 0.5px;
             min-width: 30px;
             border-left: 2px solid var(--gray-700);
+        }
+
+        /* Annotations for narrow segments */
+        .tube-annotations {
+            position: relative;
+            height: 20px;
+            margin: 0 20px;
+        }
+
+        .tube-annotation {
+            position: absolute;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .annotation-line {
+            width: 1px;
+            height: 8px;
+            background: var(--gray-500);
+            margin: 0 auto;
+        }
+
+        .annotation-text {
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--gray-700);
+            white-space: nowrap;
         }
 
         /* Grouped pieces legend */
@@ -822,7 +871,7 @@
         @media print {
             @page {
                 size: A4;
-                margin: 10mm;
+                margin: 2mm 5mm;
             }
 
             body {
@@ -843,21 +892,16 @@
             header { display: none !important; }
 
             .print-climate-note {
-                display: block;
-                text-align: center;
-                font-size: 7px;
-                color: #888;
-                margin: 0 0 8px 0;
-                font-style: italic;
+                display: none;
             }
 
             /* Print Header - kompakt 3-kolumn */
             .print-header {
                 display: flex;
-                align-items: flex-start;
+                align-items: center;
                 justify-content: space-between;
-                margin-bottom: 10px;
-                padding-bottom: 6px;
+                margin-bottom: 4px;
+                padding-bottom: 3px;
                 border-bottom: 2px solid var(--black);
                 gap: 12px;
             }
@@ -930,22 +974,24 @@
                 padding-bottom: 4px;
             }
 
-            /* Summary - kompakt horisontell */
+            /* Summary - 4 kolumner per rad, med separator */
             .summary-grid {
                 display: flex;
+                flex-wrap: wrap;
                 gap: 0;
                 border: none;
                 background: none;
             }
 
             .summary-item {
-                flex: 1;
+                flex: 1 1 25%;
                 padding: 6px 8px;
                 text-align: center;
                 border-right: 1px solid #ddd;
             }
 
-            .summary-item:last-child {
+            .summary-item:nth-child(4),
+            .summary-item:nth-child(9) {
                 border-right: none;
             }
 
@@ -956,6 +1002,27 @@
             .summary-item .label {
                 font-size: 8px;
                 margin-top: 2px;
+            }
+
+            .summary-material .value {
+                font-size: 12px;
+            }
+
+            .summary-material .label {
+                font-size: 8px;
+                text-transform: none;
+            }
+
+            .summary-separator.print-only {
+                display: block;
+                width: 100%;
+                height: 1px;
+                background: #ccc;
+                margin: 4px 0;
+            }
+
+            .summary-item.print-only {
+                display: block;
             }
 
             /* Pattern Cards - ultrakompakt */
@@ -983,28 +1050,44 @@
                 font-size: 8px;
             }
 
-            /* Tube Visual - minimal */
+            /* Tube Visual - större siffror, kompakt stapel */
             .tube-visual {
-                height: 24px;
-                margin: 4px 8px;
+                height: 28px;
+                margin: 2px 8px;
             }
 
             .tube-piece {
-                font-size: 7px;
+                font-size: 13px;
+                font-weight: 700;
             }
 
             .tube-piece-label {
-                padding: 0 1px;
-            }
-
-            .tube-waste span {
-                font-size: 6px;
                 padding: 0 2px;
             }
 
+            .tube-waste {
+                overflow: hidden;
+            }
+
+            .tube-waste span {
+                font-size: 10px;
+                padding: 0 3px;
+            }
+
             .tube-fixture {
-                font-size: 6px;
-                min-width: 16px;
+                font-size: 9px;
+                min-width: 18px;
+                overflow: hidden;
+            }
+
+            /* Annotations vid print */
+            .tube-annotations {
+                height: 16px;
+                margin: 0 8px;
+            }
+
+            .annotation-text {
+                font-size: 10px;
             }
 
             /* Dölj legend vid print - info räcker */
@@ -1317,7 +1400,7 @@
                     <div class="step">
                         <div class="step-number">1</div>
                         <h3 data-i18n="step1Title">Ange parametrar</h3>
-                        <p data-i18n="step1Desc">Fyll i rörlängd, fixturrest och kapklingans bredd</p>
+                        <p data-i18n="step1Desc">Fyll i ursprungslängd, fixturrest och kapklingans bredd</p>
                     </div>
                     <div class="step">
                         <div class="step-number">2</div>
@@ -1338,11 +1421,11 @@
                 <div class="terms-grid">
                     <div class="term">
                         <strong data-i18n="termStock">Ursprungslängd</strong>
-                        <span data-i18n="termStockDesc">Längden på råmaterialet du kapar från (t.ex. 6000mm standardrör)</span>
+                        <span data-i18n="termStockDesc">Längden på råmaterialet du kapar från (t.ex. 6000mm standardlängd)</span>
                     </div>
                     <div class="term">
                         <strong data-i18n="termFixture">Fixturrest</strong>
-                        <span data-i18n="termFixtureDesc">Den del av röret som hålls fast i fixturen och inte kan kapas</span>
+                        <span data-i18n="termFixtureDesc">Den del som hålls fast i fixturen och inte kan kapas</span>
                     </div>
                     <div class="term">
                         <strong data-i18n="termKerf">Kapklinga</strong>
@@ -1431,11 +1514,10 @@
                     </div>
                 </div>
                 <div class="print-header-center">
-                    <h2 data-i18n="cutInstruction">KAPINSTRUKTION</h2>
-                    <p id="print-job-info"></p>
                 </div>
                 <div class="print-header-right">
-                    <p id="print-params-info"></p>
+                    <h2 data-i18n="cutInstruction" style="font-size: 12px; font-weight: 700; letter-spacing: 1px; margin: 0;">KAPINSTRUKTION</h2>
+                    <p id="print-job-info"></p>
                 </div>
             </div>
             <p class="print-climate-note">1 sida = mindre klimatpåverkan</p>
@@ -1462,7 +1544,7 @@
             </div>
 
             <div class="actions no-print">
-                <button class="btn btn-primary" onclick="window.print()" data-i18n="print">Skriv ut</button>
+                <button class="btn btn-primary" onclick="printPdf()" data-i18n="print">Skriv ut</button>
                 <button class="btn btn-secondary" onclick="newOrder()" data-i18n="newOrder">Ny beställning</button>
             </div>
         </div>
@@ -1475,7 +1557,7 @@
                 tagline: 'Kapoptimering',
                 howItWorks: 'Så här funkar det',
                 step1Title: 'Ange parametrar',
-                step1Desc: 'Fyll i rörlängd, fixturrest och kapklingans bredd',
+                step1Desc: 'Fyll i ursprungslängd, fixturrest och kapklingans bredd',
                 step2Title: 'Lägg till kaplängder',
                 step2Desc: 'Ange vilka längder du behöver och hur många av varje',
                 step3Title: 'Beräkna',
@@ -1483,9 +1565,9 @@
                 step4Title: 'Se resultat',
                 step4Desc: 'Få visuella kapmönster och se materialutnyttjande',
                 termStock: 'Ursprungslängd',
-                termStockDesc: 'Längden på råmaterialet du kapar från (t.ex. 6000mm standardrör)',
+                termStockDesc: 'Längden på råmaterialet du kapar från (t.ex. 6000mm standardlängd)',
                 termFixture: 'Fixturrest',
-                termFixtureDesc: 'Den del av röret som hålls fast i fixturen och inte kan kapas',
+                termFixtureDesc: 'Den del som hålls fast i fixturen och inte kan kapas',
                 termKerf: 'Kapklinga',
                 termKerfDesc: 'Sågbladets bredd som går förlorad vid varje snitt',
                 termJob: 'Jobbnamn & Material',
@@ -1515,7 +1597,7 @@
                 suggestions: 'Optimeringsförslag',
                 print: 'Skriv ut',
                 newOrder: 'Ny beställning',
-                totalTubes: 'Antal rör',
+                totalTubes: 'Antal längder',
                 totalWaste: 'Totalt spill',
                 materialUsage: 'Materialåtgång',
                 utilization: 'Utnyttjande',
@@ -1523,7 +1605,7 @@
                 count: 'Antal:',
                 cut: 'Kap:',
                 waste: 'Spill:',
-                perTube: '/rör',
+                perTube: '/längd',
                 produced: 'produceras',
                 ordered: 'Beställt:',
                 pcs: 'st',
@@ -1561,7 +1643,7 @@
                 tagline: 'Cut Optimization',
                 howItWorks: 'How it works',
                 step1Title: 'Set parameters',
-                step1Desc: 'Enter tube length, fixture rest and saw kerf width',
+                step1Desc: 'Enter stock length, fixture rest and saw kerf width',
                 step2Title: 'Add cut lengths',
                 step2Desc: 'Specify the lengths you need and how many of each',
                 step3Title: 'Calculate',
@@ -1569,9 +1651,9 @@
                 step4Title: 'View results',
                 step4Desc: 'Get visual cutting patterns and see material utilization',
                 termStock: 'Stock length',
-                termStockDesc: 'The length of the raw material you cut from (e.g. 6000mm standard tube)',
+                termStockDesc: 'The length of the raw material you cut from (e.g. 6000mm standard length)',
                 termFixture: 'Fixture rest',
-                termFixtureDesc: 'The part of the tube held in the fixture that cannot be cut',
+                termFixtureDesc: 'The part held in the fixture that cannot be cut',
                 termKerf: 'Saw kerf',
                 termKerfDesc: 'The width of the saw blade lost with each cut',
                 termJob: 'Job name & Material',
@@ -1601,7 +1683,7 @@
                 suggestions: 'Optimization Suggestions',
                 print: 'Print',
                 newOrder: 'New Order',
-                totalTubes: 'Total tubes',
+                totalTubes: 'Total lengths',
                 totalWaste: 'Total waste',
                 materialUsage: 'Material usage',
                 utilization: 'Utilization',
@@ -1609,7 +1691,7 @@
                 count: 'Count:',
                 cut: 'Cut:',
                 waste: 'Waste:',
-                perTube: '/tube',
+                perTube: '/length',
                 produced: 'produced',
                 ordered: 'Ordered:',
                 pcs: 'pcs',
@@ -1817,29 +1899,20 @@
             document.getElementById('results').style.display = 'block';
 
             const notSpecified = currentLang === 'sv' ? 'Ej angivet' : 'Not specified';
-            document.getElementById('print-job-info').innerHTML = `
-                <strong>${result.job_name || notSpecified}</strong> &mdash; ${result.material || notSpecified}<br>
-                <small>${result.timestamp}</small>
-            `;
 
-            // Parameters for print
-            const stockLabel = currentLang === 'sv' ? 'Ursprungsl.' : 'Stock';
-            const fixtureLabel = currentLang === 'sv' ? 'Fixturrest' : 'Fixture';
-            const kerfLabel = currentLang === 'sv' ? 'Kapklinga' : 'Kerf';
-            document.getElementById('print-params-info').innerHTML = `
-                ${stockLabel}: ${result.parameters.stock_length}mm<br>
-                ${fixtureLabel}: ${result.parameters.fixture_rest}mm<br>
-                ${kerfLabel}: ${result.parameters.saw_kerf}mm
-            `;
+            const now = new Date();
+            const timeStr = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+            const dateStr = now.getFullYear() + '-' + (now.getMonth() + 1).toString().padStart(2, '0') + '-' + now.getDate().toString().padStart(2, '0');
 
+            document.getElementById('print-job-info').innerHTML = `${dateStr} ${timeStr}`;
             const summaryHtml = `
+                <div class="summary-item summary-material">
+                    <div class="value">${result.material || '—'}</div>
+                    <div class="label">${result.job_name || '—'}</div>
+                </div>
                 <div class="summary-item">
                     <div class="value">${result.summary.total_tubes}</div>
                     <div class="label">${t('totalTubes')}</div>
-                </div>
-                <div class="summary-item">
-                    <div class="value">${result.summary.total_waste_m}m</div>
-                    <div class="label">${t('totalWaste')}</div>
                 </div>
                 <div class="summary-item">
                     <div class="value">${result.summary.total_material_m}m</div>
@@ -1848,6 +1921,23 @@
                 <div class="summary-item">
                     <div class="value">${result.summary.utilization}%</div>
                     <div class="label">${t('utilization')}</div>
+                </div>
+                <div class="summary-separator print-only"></div>
+                <div class="summary-item print-only">
+                    <div class="value">${result.parameters.stock_length}</div>
+                    <div class="label">${currentLang === 'sv' ? 'URSPRUNGSLÄNGD (MM)' : 'STOCK LENGTH (MM)'}</div>
+                </div>
+                <div class="summary-item print-only">
+                    <div class="value">${result.parameters.fixture_rest}</div>
+                    <div class="label">${currentLang === 'sv' ? 'FIXTURREST (MM)' : 'FIXTURE REST (MM)'}</div>
+                </div>
+                <div class="summary-item print-only">
+                    <div class="value">${result.parameters.saw_kerf}</div>
+                    <div class="label">${currentLang === 'sv' ? 'KAPKLINGA (MM)' : 'SAW KERF (MM)'}</div>
+                </div>
+                <div class="summary-item print-only">
+                    <div class="value">${result.summary.total_waste_m}m</div>
+                    <div class="label">${t('totalWaste')}</div>
                 </div>
             `;
             document.getElementById('summary-grid').innerHTML = summaryHtml;
@@ -1917,7 +2007,6 @@
                         </div>
                     `;
                 } else if (pattern.waste > 0) {
-                    // Small waste - just show as a thin strip
                     tubeHtml += `
                         <div class="tube-waste"
                              style="left: ${usedWidth}%; width: ${wasteWidth}%;">
@@ -1963,7 +2052,7 @@
                 verificationHtml += `
                     <div class="verification-item ${statusClass}">
                         <span><strong>L-${item.length}mm</strong> — ${item.produced} ${t('pcs')} ${t('produced')}${extra}</span>
-                        <span>${t('ordered')} ${item.needed} ${t('pcs')}</span>
+                        <span style="margin-left: 8px;">${t('ordered')} ${item.needed} ${t('pcs')}</span>
                         <span class="check-icon ${statusClass}">${icon}</span>
                     </div>
                 `;
@@ -1978,7 +2067,7 @@
             if (result.buffer_suggestions && result.buffer_suggestions.length > 0) {
                 suggestionsCard.style.display = 'block';
 
-                const tubesWord = currentLang === 'sv' ? 'rör' : 'tubes';
+                const tubesWord = currentLang === 'sv' ? 'längder' : 'lengths';
                 suggestionsIntro.innerHTML = `
                     <strong>${t('utilizationIs')} ${result.summary.utilization}%</strong><br>
                     ${t('bufferIntro')}
@@ -2043,6 +2132,19 @@
 
             // Scrolla till längderna
             document.getElementById('items-list').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function printPdf() {
+            const originalTitle = document.title;
+            const now = new Date();
+            const y = now.getFullYear();
+            const mo = (now.getMonth() + 1).toString().padStart(2, '0');
+            const d = now.getDate().toString().padStart(2, '0');
+            const h = now.getHours().toString().padStart(2, '0');
+            const mi = now.getMinutes().toString().padStart(2, '0');
+            document.title = `Kapinstruktion_${y}_${mo}_${d}_${h}_${mi}`;
+            window.print();
+            document.title = originalTitle;
         }
 
         function newOrder() {
